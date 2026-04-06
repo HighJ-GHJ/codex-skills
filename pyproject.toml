@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prepare-web-gpt-handoff-skill"
+version = "0.1.0"
+description = "A portable Codex skill for preparing a handoff package for web GPT strategy and research discussions."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Codex" }]
+license = { file = "LICENSE" }
+keywords = ["codex", "skill", "handoff", "web-gpt", "research", "strategy"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+[tool.setuptools]
+py-modules = []

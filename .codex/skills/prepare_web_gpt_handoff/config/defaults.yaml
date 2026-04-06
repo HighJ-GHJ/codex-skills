@@ -1,0 +1,49 @@
+skill_name: prepare_web_gpt_handoff
+skill_version: 0.1.0
+default_mode: strategy_research
+max_files: 8
+max_bundle_chars: 14000
+per_file_char_limit: 2800
+brief_summary_chars: 320
+excluded_dirs:
+  - .git
+  - .hg
+  - .svn
+  - .venv
+  - venv
+  - node_modules
+  - __pycache__
+  - .mypy_cache
+  - .pytest_cache
+  - .ruff_cache
+  - data
+  - outputs
+  - .codex/handoffs
+excluded_suffixes:
+  - .png
+  - .jpg
+  - .jpeg
+  - .gif
+  - .svg
+  - .pdf
+  - .zip
+  - .tar
+  - .gz
+  - .lock
+  - .sqlite
+  - .db
+  - .bin
+  - .pyc
+excluded_names:
+  - .gitkeep
+  - package-lock.json
+  - pnpm-lock.yaml
+  - yarn.lock
+  - poetry.lock
+  - Cargo.lock
+  - Pipfile.lock
+  - .DS_Store
+default_next_actions:
+  - 检查 brief.md 与 bundle.md 是否准确覆盖了当前策略问题。
+  - 只有在预览内容正确时再让 Codex 执行确认交付。
+  - 如果材料过多或过少，使用更精确的 must_include / must_exclude 重新生成。

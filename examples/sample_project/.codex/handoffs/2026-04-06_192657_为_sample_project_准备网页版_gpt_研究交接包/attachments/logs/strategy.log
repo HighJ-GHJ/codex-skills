@@ -1,0 +1,4 @@
+2026-04-06T18:10:00+08:00 INFO Need a clearer preview before asking for confirmation
+2026-04-06T18:11:30+08:00 INFO Main reading layer should prefer docs, then core code, then concise logs
+2026-04-06T18:12:05+08:00 WARN Previous attempts packed too much low-signal context
+2026-04-06T18:12:44+08:00 INFO final_reply.md must echo handoff_id for future validation

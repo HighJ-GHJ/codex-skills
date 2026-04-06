@@ -1,0 +1,30 @@
+# Large Context
+
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.
+The handoff package should stay focused while still preserving the reasoning chain.

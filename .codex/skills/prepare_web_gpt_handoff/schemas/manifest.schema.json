@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "prepare_web_gpt_handoff manifest",
+  "type": "object",
+  "required": [
+    "skill_name",
+    "skill_version",
+    "handoff_id",
+    "created_at",
+    "mode",
+    "topic",
+    "goal",
+    "status",
+    "paths",
+    "inputs",
+    "selection_summary",
+    "files",
+    "artifacts",
+    "notes"
+  ],
+  "properties": {
+    "skill_name": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "handoff_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "confirmed_at": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["preview", "confirmed", "archived"]
+    },
+    "paths": {
+      "type": "object",
+      "required": ["project_root", "handoff_dir", "attachments_dir"],
+      "properties": {
+        "project_root": { "type": "string" },
+        "handoff_dir": { "type": "string" },
+        "attachments_dir": { "type": "string" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "mode",
+        "topic",
+        "goal",
+        "focus_points",
+        "must_include",
+        "must_exclude",
+        "max_files",
+        "max_bundle_chars"
+      ],
+      "properties": {
+        "mode": { "type": "string" },
+        "topic": { "type": "string" },
+        "goal": { "type": "string" },
+        "focus_points": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "must_include": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "must_exclude": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "max_files": { "type": "integer" },
+        "max_bundle_chars": { "type": "integer" }
+      }
+    },
+    "selection_summary": {
+      "type": "object",
+      "required": [
+        "total_candidate_files",
+        "selected_files",
+        "truncated_files",
+        "excluded_files",
+        "total_bundle_chars",
+        "max_files_requested",
+        "max_bundle_chars_requested"
+      ],
+      "properties": {
+        "total_candidate_files": { "type": "integer" },
+        "selected_files": { "type": "integer" },
+        "truncated_files": { "type": "integer" },
+        "excluded_files": { "type": "integer" },
+        "total_bundle_chars": { "type": "integer" },
+        "max_files_requested": { "type": "integer" },
+        "max_bundle_chars_requested": { "type": "integer" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "type",
+          "status",
+          "included_in_bundle",
+          "reason",
+          "char_count_original",
+          "char_count_included",
+          "truncated",
+          "truncation_method",
+          "priority"
+        ],
+        "properties": {
+          "path": { "type": "string" },
+          "type": { "type": "string" },
+          "status": { "type": "string" },
+          "included_in_bundle": { "type": "boolean" },
+          "reason": { "type": "string" },
+          "char_count_original": { "type": "integer" },
+          "char_count_included": { "type": "integer" },
+          "truncated": { "type": "boolean" },
+          "truncation_method": { "type": "string" },
+          "priority": { "type": "integer" }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": [
+        "brief_md",
+        "bundle_md",
+        "manifest_json",
+        "reply_template_md",
+        "notes_md",
+        "preview_json"
+      ],
+      "properties": {
+        "brief_md": { "type": "string" },
+        "bundle_md": { "type": "string" },
+        "manifest_json": { "type": "string" },
+        "reply_template_md": { "type": "string" },
+        "notes_md": { "type": "string" },
+        "preview_json": { "type": "string" }
+      }
+    },
+    "notes": {
+      "type": "object",
+      "required": [
+        "summary",
+        "warnings",
+        "next_actions",
+        "recommended_send_order"
+      ],
+      "properties": {
+        "summary": { "type": "string" },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "next_actions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_send_order": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 3
+        }
+      }
+    }
+  }
+}

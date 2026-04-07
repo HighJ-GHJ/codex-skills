@@ -1,0 +1,7 @@
+interface:
+  display_name: "Prepare Web GPT Handoff"
+  short_description: "Portable handoff packaging with optional exact tokens"
+  default_prompt: "Use $prepare_web_gpt_handoff to package this strategy or research discussion into a visible handoff for web GPT."
+
+policy:
+  allow_implicit_invocation: true

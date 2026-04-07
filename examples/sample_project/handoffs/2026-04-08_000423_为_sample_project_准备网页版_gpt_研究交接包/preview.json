@@ -1,0 +1,185 @@
+{
+  "handoff_id": "2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包",
+  "status": "confirmed",
+  "mode": "strategy_research",
+  "topic": "为 sample_project 准备网页版 GPT 研究交接包",
+  "selected_file_count": 8,
+  "truncated_file_count": 4,
+  "excluded_file_count": 16,
+  "contract_count": 2,
+  "workflow_count": 1,
+  "structured_extract_count": 7,
+  "fallback_count": 0,
+  "retrieval_gate": "full_bundle",
+  "quality_metrics": {
+    "contract_coverage": 2,
+    "workflow_coverage": 1,
+    "structured_extract_ratio": 88,
+    "fallback_ratio": 0,
+    "budget_compliance": true,
+    "anchor_fidelity": true,
+    "bundle_order_valid": true
+  },
+  "token_runtime": {
+    "exact_requested": true,
+    "exact_available": true,
+    "resolved_method": "tiktoken:cl100k_base",
+    "fallback_reason": ""
+  },
+  "brief_summary": "Web GPT Handoff Brief 1. 任务类型 这是一项以“为 sample_project 准备网页版 GPT 研究交接包”为主题的策略讨论 / 资料检索任务，当前模式为 `strategy_research`。请把重点放在判断框架、研究路径、方案取舍、验证思路与资料补全上，而不是直接产出代码实现或改仓库补丁。...",
+  "file_list_summary": [
+    {
+      "path": "README.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Sample Project",
+        "演示目标",
+        "示例内容"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "docs/overview.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Sample Project Overview"
+      ],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "docs/research_questions.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Research Questions"
+      ],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "schemas/manifest.schema.json",
+      "type": "config",
+      "reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "context_layer": "stable_contract",
+      "artifact_type": "contract",
+      "excerpt_strategy": "key_block_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "$schema",
+        "title",
+        "required",
+        "properties.status",
+        "properties.paths.required",
+        "properties.artifacts"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "templates/reply_template.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "context_layer": "stable_contract",
+      "artifact_type": "contract",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Sample Project Reply Template",
+        "Output Contract",
+        "Required Sections"
+      ],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "src/workflow.py",
+      "type": "code",
+      "reason": "User explicitly requested this artifact. Workflow artifact that controls handoff creation, preview, or confirmation state.",
+      "context_layer": "evidence",
+      "artifact_type": "workflow",
+      "excerpt_strategy": "symbol_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "<imports>",
+        "HandoffState",
+        "build_preview_state",
+        "confirm_state"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": true,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "src/selector.py",
+      "type": "code",
+      "reason": "User explicitly requested this artifact. Selection logic artifact that determines ranking, extraction, or budget behavior.",
+      "context_layer": "evidence",
+      "artifact_type": "selection_logic",
+      "excerpt_strategy": "symbol_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "<imports>",
+        "Candidate",
+        "rank_candidates"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": true,
+      "critical_token_preserved": true
+    },
+    {
+      "path": "logs/strategy.log",
+      "type": "log",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "full_text",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true
+    }
+  ],
+  "top_anchors": [
+    "Sample Project",
+    "演示目标",
+    "示例内容",
+    "Sample Project Overview",
+    "Research Questions",
+    "$schema"
+  ],
+  "next_actions": [
+    "检查 brief.md 与 bundle.md 是否准确覆盖了当前策略问题。",
+    "只有在预览内容正确时再让 Codex 执行确认交付。",
+    "如果材料过多或过少，使用更精确的 must_include / must_exclude 重新生成。"
+  ]
+}

@@ -1,0 +1,4 @@
+# Recommended runtime dependency for exact token counting.
+# The skill still works without this package by falling back to a conservative
+# built-in estimator, but local development and CI should install it.
+tiktoken>=0.7

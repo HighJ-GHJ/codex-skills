@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "prepare_web_gpt_handoff manifest",
+  "type": "object",
+  "required": [
+    "skill_name",
+    "skill_version",
+    "handoff_id",
+    "created_at",
+    "mode",
+    "topic",
+    "goal",
+    "status",
+    "paths",
+    "inputs",
+    "selection_summary",
+    "files",
+    "artifacts",
+    "notes"
+  ],
+  "properties": {
+    "skill_name": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "handoff_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "confirmed_at": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["preview", "confirmed", "archived"]
+    },
+    "paths": {
+      "type": "object",
+      "required": ["project_root", "handoff_dir", "attachments_dir"],
+      "properties": {
+        "project_root": { "type": "string" },
+        "handoff_dir": { "type": "string" },
+        "attachments_dir": { "type": "string" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "mode",
+        "topic",
+        "goal",
+        "focus_points",
+        "must_include",
+        "must_exclude",
+        "max_files",
+        "max_bundle_tokens",
+        "require_exact_tokens"
+      ],
+      "properties": {
+        "mode": { "type": "string" },
+        "topic": { "type": "string" },
+        "goal": { "type": "string" },
+        "focus_points": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "must_include": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "must_exclude": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "max_files": { "type": "integer" },
+        "max_bundle_tokens": { "type": "integer" },
+        "require_exact_tokens": { "type": "boolean" }
+      }
+    },
+    "selection_summary": {
+      "type": "object",
+      "required": [
+        "total_candidate_files",
+        "selected_files",
+        "truncated_files",
+        "excluded_files",
+        "total_bundle_tokens",
+        "max_files_requested",
+        "max_bundle_tokens_requested",
+        "token_count_method",
+        "token_runtime",
+        "contract_artifacts_selected",
+        "workflow_artifacts_selected",
+        "structured_extract_files",
+        "typed_digest_files",
+        "fallback_head_tail_files",
+        "bundle_layer_counts",
+        "strategy_version",
+        "bundle_order_version",
+        "critical_contract_items",
+        "dependency_promoted_items",
+        "retrieval_gate",
+        "quality_metrics"
+      ],
+      "properties": {
+        "total_candidate_files": { "type": "integer" },
+        "selected_files": { "type": "integer" },
+        "truncated_files": { "type": "integer" },
+        "excluded_files": { "type": "integer" },
+        "total_bundle_tokens": { "type": "integer" },
+        "max_files_requested": { "type": "integer" },
+        "max_bundle_tokens_requested": { "type": "integer" },
+        "token_count_method": { "type": "string" },
+        "token_runtime": {
+          "type": "object",
+          "required": ["exact_requested", "exact_available", "resolved_method", "fallback_reason"],
+          "properties": {
+            "exact_requested": { "type": "boolean" },
+            "exact_available": { "type": "boolean" },
+            "resolved_method": { "type": "string" },
+            "fallback_reason": { "type": "string" }
+          }
+        },
+        "contract_artifacts_selected": { "type": "integer" },
+        "workflow_artifacts_selected": { "type": "integer" },
+        "structured_extract_files": { "type": "integer" },
+        "typed_digest_files": { "type": "integer" },
+        "fallback_head_tail_files": { "type": "integer" },
+        "strategy_version": { "type": "string" },
+        "bundle_order_version": { "type": "string" },
+        "critical_contract_items": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dependency_promoted_items": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "retrieval_gate": {
+          "type": "string",
+          "enum": ["brief_only", "brief_plus_contract", "full_bundle"]
+        },
+        "quality_metrics": {
+          "type": "object",
+          "required": [
+            "contract_coverage",
+            "workflow_coverage",
+            "structured_extract_ratio",
+            "fallback_ratio",
+            "budget_compliance",
+            "anchor_fidelity",
+            "bundle_order_valid"
+          ],
+          "properties": {
+            "contract_coverage": { "type": "integer" },
+            "workflow_coverage": { "type": "integer" },
+            "structured_extract_ratio": { "type": "integer" },
+            "fallback_ratio": { "type": "integer" },
+            "budget_compliance": { "type": "boolean" },
+            "anchor_fidelity": { "type": "boolean" },
+            "bundle_order_valid": { "type": "boolean" }
+          }
+        },
+        "bundle_layer_counts": {
+          "type": "object",
+          "required": ["stable_contract", "dynamic_task", "evidence", "attachments"],
+          "properties": {
+            "stable_contract": { "type": "integer" },
+            "dynamic_task": { "type": "integer" },
+            "evidence": { "type": "integer" },
+            "attachments": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "type",
+          "status",
+          "included_in_bundle",
+          "reason",
+          "token_count_original",
+          "token_count_included",
+          "truncated",
+          "truncation_method",
+          "priority",
+          "context_layer",
+          "artifact_type",
+          "excerpt_strategy",
+          "excerpt_anchor",
+          "compaction_strategy",
+          "selection_reason",
+          "fallback_used",
+          "dependency_promoted",
+          "critical_token_preserved"
+        ],
+        "properties": {
+          "path": { "type": "string" },
+          "type": { "type": "string" },
+          "status": { "type": "string" },
+          "included_in_bundle": { "type": "boolean" },
+          "reason": { "type": "string" },
+          "token_count_original": { "type": "integer" },
+          "token_count_included": { "type": "integer" },
+          "truncated": { "type": "boolean" },
+          "truncation_method": { "type": "string" },
+          "priority": { "type": "integer" },
+          "context_layer": {
+            "type": "string",
+            "enum": ["stable_contract", "dynamic_task", "evidence", "attachments"]
+          },
+          "artifact_type": {
+            "type": "string",
+            "enum": ["contract", "workflow", "selection_logic", "code_snippet", "supporting_context", "attachments_only"]
+          },
+          "excerpt_strategy": { "type": "string" },
+          "excerpt_anchor": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "compaction_strategy": { "type": "string" },
+          "selection_reason": { "type": "string" },
+          "fallback_used": { "type": "boolean" },
+          "dependency_promoted": { "type": "boolean" },
+          "critical_token_preserved": { "type": "boolean" }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": [
+        "brief_md",
+        "bundle_md",
+        "manifest_json",
+        "reply_template_md",
+        "notes_md",
+        "preview_json"
+      ],
+      "properties": {
+        "brief_md": { "type": "string" },
+        "bundle_md": { "type": "string" },
+        "manifest_json": { "type": "string" },
+        "reply_template_md": { "type": "string" },
+        "notes_md": { "type": "string" },
+        "preview_json": { "type": "string" }
+      }
+    },
+    "notes": {
+      "type": "object",
+      "required": [
+        "summary",
+        "warnings",
+        "next_actions",
+        "recommended_send_order"
+      ],
+      "properties": {
+        "summary": { "type": "string" },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "next_actions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_send_order": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 3
+        }
+      }
+    }
+  }
+}

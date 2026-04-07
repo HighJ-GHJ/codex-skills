@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sample_project handoff manifest",
+  "type": "object",
+  "required": ["handoff_id", "status", "paths", "artifacts"],
+  "properties": {
+    "handoff_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["preview", "confirmed"]
+    },
+    "paths": {
+      "type": "object",
+      "required": ["handoff_dir", "attachments_dir"],
+      "properties": {
+        "handoff_dir": { "type": "string" },
+        "attachments_dir": { "type": "string" }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["brief_md", "bundle_md", "reply_template_md"],
+      "properties": {
+        "brief_md": { "type": "string" },
+        "bundle_md": { "type": "string" },
+        "reply_template_md": { "type": "string" }
+      }
+    }
+  }
+}

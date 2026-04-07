@@ -1,0 +1,330 @@
+{
+  "skill_name": "prepare_web_gpt_handoff",
+  "skill_version": "0.2.0",
+  "handoff_id": "2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包",
+  "created_at": "2026-04-08T00:04:23+08:00",
+  "mode": "strategy_research",
+  "topic": "为 sample_project 准备网页版 GPT 研究交接包",
+  "goal": "把当前策略问题与最小必要材料整理给网页版 GPT 继续研究",
+  "status": "confirmed",
+  "paths": {
+    "project_root": ".",
+    "handoff_dir": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包",
+    "attachments_dir": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments"
+  },
+  "inputs": {
+    "mode": "strategy_research",
+    "topic": "为 sample_project 准备网页版 GPT 研究交接包",
+    "goal": "把当前策略问题与最小必要材料整理给网页版 GPT 继续研究",
+    "focus_points": [
+      "保持 minimal_sufficient_context",
+      "明确 handoff_id 回显与最终收口格式",
+      "把任务维持在策略讨论而不是代码实现"
+    ],
+    "must_include": [
+      "README.md",
+      "docs/overview.md",
+      "docs/research_questions.md",
+      "schemas/manifest.schema.json",
+      "templates/reply_template.md",
+      "src/workflow.py",
+      "src/selector.py",
+      "logs/strategy.log"
+    ],
+    "must_exclude": [],
+    "max_files": 8,
+    "max_bundle_tokens": 4096,
+    "background": "",
+    "known_routes": [],
+    "blockers": [],
+    "questions": [
+      "哪些材料应该进入主阅读层？",
+      "reply_template 应如何约束最终收口？"
+    ],
+    "avoid_directions": [
+      "不要自动化浏览器发送",
+      "不要依赖本机登录态或隐式记忆"
+    ],
+    "output_requirements": [
+      "请给出推荐路线、备选路线、关键依据、风险与下一步建议"
+    ],
+    "mentioned_paths": [],
+    "require_exact_tokens": true
+  },
+  "selection_summary": {
+    "total_candidate_files": 10,
+    "selected_files": 8,
+    "truncated_files": 4,
+    "excluded_files": 16,
+    "total_bundle_tokens": 2657,
+    "max_files_requested": 8,
+    "max_bundle_tokens_requested": 4096,
+    "token_count_method": "tiktoken:cl100k_base",
+    "token_runtime": {
+      "exact_requested": true,
+      "exact_available": true,
+      "resolved_method": "tiktoken:cl100k_base",
+      "fallback_reason": ""
+    },
+    "contract_artifacts_selected": 2,
+    "workflow_artifacts_selected": 1,
+    "structured_extract_files": 7,
+    "typed_digest_files": 0,
+    "fallback_head_tail_files": 0,
+    "bundle_layer_counts": {
+      "stable_contract": 2,
+      "dynamic_task": 0,
+      "evidence": 6,
+      "attachments": 0
+    },
+    "strategy_version": "context_strategy_v0_3",
+    "bundle_order_version": "position_aware_v1",
+    "critical_contract_items": [
+      "schemas/manifest.schema.json",
+      "templates/reply_template.md"
+    ],
+    "dependency_promoted_items": [
+      "src/workflow.py",
+      "src/selector.py"
+    ],
+    "retrieval_gate": "full_bundle",
+    "quality_metrics": {
+      "contract_coverage": 2,
+      "workflow_coverage": 1,
+      "structured_extract_ratio": 88,
+      "fallback_ratio": 0,
+      "budget_compliance": true,
+      "anchor_fidelity": true,
+      "bundle_order_valid": true
+    }
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "type": "documentation",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "token_count_original": 775,
+      "token_count_included": 392,
+      "truncated": true,
+      "truncation_method": "section_extract",
+      "priority": 1,
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "excerpt_anchor": [
+        "Sample Project",
+        "演示目标",
+        "示例内容"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "fallback_used": false,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/README.md"
+    },
+    {
+      "path": "docs/overview.md",
+      "type": "documentation",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "token_count_original": 131,
+      "token_count_included": 131,
+      "truncated": false,
+      "truncation_method": "section_extract",
+      "priority": 1,
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "excerpt_anchor": [
+        "Sample Project Overview"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "fallback_used": false,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/docs/overview.md"
+    },
+    {
+      "path": "docs/research_questions.md",
+      "type": "documentation",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "token_count_original": 142,
+      "token_count_included": 141,
+      "truncated": false,
+      "truncation_method": "section_extract",
+      "priority": 1,
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "excerpt_anchor": [
+        "Research Questions"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "fallback_used": false,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/docs/research_questions.md"
+    },
+    {
+      "path": "schemas/manifest.schema.json",
+      "type": "config",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "token_count_original": 245,
+      "token_count_included": 234,
+      "truncated": true,
+      "truncation_method": "key_block_extract",
+      "priority": 1,
+      "context_layer": "stable_contract",
+      "artifact_type": "contract",
+      "excerpt_strategy": "key_block_extract",
+      "excerpt_anchor": [
+        "$schema",
+        "title",
+        "required",
+        "properties.status",
+        "properties.paths.required",
+        "properties.artifacts"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "fallback_used": false,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/schemas/manifest.schema.json"
+    },
+    {
+      "path": "templates/reply_template.md",
+      "type": "documentation",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "token_count_original": 85,
+      "token_count_included": 84,
+      "truncated": false,
+      "truncation_method": "section_extract",
+      "priority": 1,
+      "context_layer": "stable_contract",
+      "artifact_type": "contract",
+      "excerpt_strategy": "section_extract",
+      "excerpt_anchor": [
+        "Sample Project Reply Template",
+        "Output Contract",
+        "Required Sections"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "fallback_used": false,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/templates/reply_template.md"
+    },
+    {
+      "path": "src/workflow.py",
+      "type": "code",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Workflow artifact that controls handoff creation, preview, or confirmation state.",
+      "token_count_original": 119,
+      "token_count_included": 112,
+      "truncated": true,
+      "truncation_method": "symbol_extract",
+      "priority": 1,
+      "context_layer": "evidence",
+      "artifact_type": "workflow",
+      "excerpt_strategy": "symbol_extract",
+      "excerpt_anchor": [
+        "<imports>",
+        "HandoffState",
+        "build_preview_state",
+        "confirm_state"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Workflow artifact that controls handoff creation, preview, or confirmation state.",
+      "fallback_used": false,
+      "dependency_promoted": true,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/src/workflow.py"
+    },
+    {
+      "path": "src/selector.py",
+      "type": "code",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Selection logic artifact that determines ranking, extraction, or budget behavior.",
+      "token_count_original": 186,
+      "token_count_included": 182,
+      "truncated": true,
+      "truncation_method": "symbol_extract",
+      "priority": 1,
+      "context_layer": "evidence",
+      "artifact_type": "selection_logic",
+      "excerpt_strategy": "symbol_extract",
+      "excerpt_anchor": [
+        "<imports>",
+        "Candidate",
+        "rank_candidates"
+      ],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Selection logic artifact that determines ranking, extraction, or budget behavior.",
+      "fallback_used": false,
+      "dependency_promoted": true,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/src/selector.py"
+    },
+    {
+      "path": "logs/strategy.log",
+      "type": "log",
+      "status": "selected",
+      "included_in_bundle": true,
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "token_count_original": 114,
+      "token_count_included": 113,
+      "truncated": false,
+      "truncation_method": "full_text",
+      "priority": 1,
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "full_text",
+      "excerpt_anchor": [],
+      "compaction_strategy": "none",
+      "selection_reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "fallback_used": false,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/logs/strategy.log"
+    }
+  ],
+  "artifacts": {
+    "brief_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/brief.md",
+    "bundle_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/bundle.md",
+    "manifest_json": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/manifest.json",
+    "reply_template_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/reply_template.md",
+    "notes_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/notes.md",
+    "preview_json": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/preview.json"
+  },
+  "notes": {
+    "summary": "已确认交付主题“为 sample_project 准备网页版 GPT 研究交接包”的 handoff 包。",
+    "warnings": [],
+    "next_actions": [
+      "检查 brief.md 与 bundle.md 是否准确覆盖了当前策略问题。",
+      "只有在预览内容正确时再让 Codex 执行确认交付。",
+      "如果材料过多或过少，使用更精确的 must_include / must_exclude 重新生成。"
+    ],
+    "recommended_send_order": [
+      "brief.md",
+      "bundle.md",
+      "reply_template.md"
+    ]
+  },
+  "confirmed_at": "2026-04-08T00:04:29+08:00"
+}

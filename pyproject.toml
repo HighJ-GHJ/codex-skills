@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "prepare-web-gpt-handoff-skill"
-version = "0.1.0"
+version = "0.2.0"
 description = "A portable Codex skill for preparing a handoff package for web GPT strategy and research discussions."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,5 +23,13 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
 ]
 
+[project.optional-dependencies]
+exact-tokens = ["tiktoken>=0.7"]
+
+[project.scripts]
+prepare-web-gpt-handoff-prepare = "prepare_web_gpt_handoff.prepare:main"
+prepare-web-gpt-handoff-preview = "prepare_web_gpt_handoff.preview:main"
+prepare-web-gpt-handoff-confirm = "prepare_web_gpt_handoff.confirm:main"
+
 [tool.setuptools]
-py-modules = []
+packages = ["prepare_web_gpt_handoff"]

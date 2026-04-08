@@ -25,14 +25,58 @@ class RepoAssetTests(unittest.TestCase):
         self.assertIn("$prepare_web_gpt_handoff", metadata_text)
         self.assertIn("allow_implicit_invocation: true", metadata_text)
 
+        placeholder_metadata = (
+            REPO_ROOT
+            / ".agents"
+            / "skills"
+            / "monorepo_placeholder_skill"
+            / "agents"
+            / "openai.yaml"
+        ).read_text(encoding="utf-8")
+        self.assertIn('display_name: "Monorepo Placeholder Skill"', placeholder_metadata)
+        self.assertIn("allow_implicit_invocation: false", placeholder_metadata)
+
         readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("Codex-first", readme_text)
-        self.assertIn("不是 plugin / marketplace / installer 仓库", readme_text)
-        self.assertIn("Golden Fixture", readme_text)
+        self.assertIn("skills monorepo", readme_text)
+        self.assertIn("零安装优先", readme_text)
+        self.assertIn("monorepo_placeholder_skill", readme_text)
 
         agents_text = (REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("canonical golden fixture", agents_text)
-        self.assertIn("不做 plugin / marketplace / installer 化", agents_text)
+        self.assertIn("多-skill 宿主", agents_text)
+        self.assertIn("placeholder", agents_text)
+
+        skills_index_text = (REPO_ROOT / ".agents" / "skills" / "README.md").read_text(encoding="utf-8")
+        self.assertIn("prepare_web_gpt_handoff", skills_index_text)
+        self.assertIn("monorepo_placeholder_skill", skills_index_text)
+
+        skill_doc_text = (REPO_ROOT / "docs" / "skills" / "prepare_web_gpt_handoff.md").read_text(encoding="utf-8")
+        self.assertIn("strict-exact", skill_doc_text)
+        self.assertIn("graph-assisted selector", skill_doc_text)
+
+        placeholder_doc_text = (REPO_ROOT / "docs" / "skills" / "monorepo_placeholder_skill.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("占位 skill", placeholder_doc_text)
+
+        architecture_text = (REPO_ROOT / "docs" / "architecture" / "skills_monorepo.md").read_text(encoding="utf-8")
+        self.assertIn("零安装原则", architecture_text)
+        self.assertIn("共享包", architecture_text)
+
+    def test_shared_package_is_importable(self) -> None:
+        from codex_skills_shared import build_token_runtime, normalize_pattern
+
+        defaults = type(
+            "Defaults",
+            (),
+            {
+                "tokenizer_encoding": "cl100k_base",
+                "fallback_token_count_method": "ascii_div4_plus_non_ascii",
+            },
+        )()
+        runtime = build_token_runtime(defaults)
+        self.assertTrue(runtime.resolved_method)
+        self.assertEqual(normalize_pattern("./foo\\bar.py"), "foo/bar.py")
 
     def test_canonical_sample_snapshot_is_confirmed_and_round_trippable(self) -> None:
         sample_root = REPO_ROOT / "examples" / "sample_project"
@@ -60,9 +104,13 @@ class RepoAssetTests(unittest.TestCase):
         self.assertIn("bundle_order_version", manifest["selection_summary"])
         self.assertIn("critical_contract_items", manifest["selection_summary"])
         self.assertIn("dependency_promoted_items", manifest["selection_summary"])
+        self.assertIn("selector_engine", manifest["selection_summary"])
+        self.assertIn("repo_graph", manifest["selection_summary"])
         self.assertIn("token_runtime", manifest["selection_summary"])
+        self.assertIn("explanation", manifest)
         self.assertEqual(manifest["selection_summary"]["token_runtime"]["resolved_method"], manifest["selection_summary"]["token_count_method"])
         self.assertEqual(manifest["selection_summary"]["token_count_method"], "tiktoken:cl100k_base")
+        self.assertEqual(manifest["selection_summary"]["selector_engine"]["name"], "contract_first_graph_assisted")
         self.assertGreater(manifest["selection_summary"]["contract_artifacts_selected"], 0)
         self.assertGreater(manifest["selection_summary"]["workflow_artifacts_selected"], 0)
         self.assertIn("context_layer", manifest["files"][0])
@@ -71,6 +119,11 @@ class RepoAssetTests(unittest.TestCase):
         self.assertIn("compaction_strategy", manifest["files"][0])
         self.assertIn("dependency_promoted", manifest["files"][0])
         self.assertIn("critical_token_preserved", manifest["files"][0])
+        self.assertIn("graph_selected", manifest["files"][0])
+        self.assertIn("graph_distance", manifest["files"][0])
+        self.assertIn("graph_path_types", manifest["files"][0])
+        self.assertIn("explanation_path_ref", manifest["files"][0])
+        self.assertGreater(len(manifest["explanation"]["per_artifact_paths"]), 0)
         for name in ["brief.md", "bundle.md", "manifest.json", "reply_template.md", "notes.md", "preview.json"]:
             self.assertTrue((canonical_dir / name).exists(), name)
 
@@ -78,6 +131,7 @@ class RepoAssetTests(unittest.TestCase):
         self.assertIn(f"handoff_id: {handoff_id}", preview_text)
         self.assertIn("contract 条目数:", preview_text)
         self.assertIn("top_anchors:", preview_text)
+        self.assertIn("selector_engine:", preview_text)
 
 
 if __name__ == "__main__":

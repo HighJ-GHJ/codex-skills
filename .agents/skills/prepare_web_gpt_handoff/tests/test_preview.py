@@ -66,6 +66,9 @@ class PreviewTests(unittest.TestCase):
             "fallback_count",
             "retrieval_gate",
             "quality_metrics",
+            "selector_engine",
+            "repo_graph",
+            "explanation",
             "brief_summary",
             "file_list_summary",
             "top_anchors",
@@ -83,8 +86,12 @@ class PreviewTests(unittest.TestCase):
         self.assertIn("top_anchors:", preview_text)
         self.assertIn("文件清单摘要:", preview_text)
         self.assertIn("下一步可选动作:", preview_text)
+        self.assertIn("selector_engine:", preview_text)
+        self.assertIn("two_hop_triggered:", preview_text)
+        self.assertIn("explanation_coverage:", preview_text)
         self.assertIn("retrieval_gate", preview)
         self.assertIn("bundle_order_valid", preview["quality_metrics"])
+        self.assertTrue(preview["selector_engine"]["graph_assisted"])
 
     def test_confirm_updates_status_and_delivery_report(self) -> None:
         result = prepare_handoff(self.project_root, self.build_inputs())

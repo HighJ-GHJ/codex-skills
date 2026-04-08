@@ -15,6 +15,7 @@
     "inputs",
     "selection_summary",
     "files",
+    "explanation",
     "artifacts",
     "notes"
   ],
@@ -112,6 +113,8 @@
         "bundle_order_version",
         "critical_contract_items",
         "dependency_promoted_items",
+        "selector_engine",
+        "repo_graph",
         "retrieval_gate",
         "quality_metrics"
       ],
@@ -149,6 +152,32 @@
           "type": "array",
           "items": { "type": "string" }
         },
+        "selector_engine": {
+          "type": "object",
+          "required": ["name", "version", "graph_assisted"],
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "string" },
+            "graph_assisted": { "type": "boolean" }
+          }
+        },
+        "repo_graph": {
+          "type": "object",
+          "required": [
+            "graph_version",
+            "node_counts",
+            "edge_counts",
+            "two_hop_enabled",
+            "two_hop_triggered"
+          ],
+          "properties": {
+            "graph_version": { "type": "string" },
+            "node_counts": { "type": "object" },
+            "edge_counts": { "type": "object" },
+            "two_hop_enabled": { "type": "boolean" },
+            "two_hop_triggered": { "type": "boolean" }
+          }
+        },
         "retrieval_gate": {
           "type": "string",
           "enum": ["brief_only", "brief_plus_contract", "full_bundle"]
@@ -162,7 +191,8 @@
             "fallback_ratio",
             "budget_compliance",
             "anchor_fidelity",
-            "bundle_order_valid"
+            "bundle_order_valid",
+            "explanation_coverage"
           ],
           "properties": {
             "contract_coverage": { "type": "integer" },
@@ -171,7 +201,8 @@
             "fallback_ratio": { "type": "integer" },
             "budget_compliance": { "type": "boolean" },
             "anchor_fidelity": { "type": "boolean" },
-            "bundle_order_valid": { "type": "boolean" }
+            "bundle_order_valid": { "type": "boolean" },
+            "explanation_coverage": { "type": "integer" }
           }
         },
         "bundle_layer_counts": {
@@ -209,7 +240,11 @@
           "selection_reason",
           "fallback_used",
           "dependency_promoted",
-          "critical_token_preserved"
+          "critical_token_preserved",
+          "graph_selected",
+          "graph_distance",
+          "graph_path_types",
+          "explanation_path_ref"
         ],
         "properties": {
           "path": { "type": "string" },
@@ -239,7 +274,44 @@
           "selection_reason": { "type": "string" },
           "fallback_used": { "type": "boolean" },
           "dependency_promoted": { "type": "boolean" },
-          "critical_token_preserved": { "type": "boolean" }
+          "critical_token_preserved": { "type": "boolean" },
+          "graph_selected": { "type": "boolean" },
+          "graph_distance": { "type": "integer" },
+          "graph_path_types": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "explanation_path_ref": { "type": "string" }
+        }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "required": ["per_artifact_paths"],
+      "properties": {
+        "per_artifact_paths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["artifact_path", "target_node", "path", "edge_types", "score_breakdown"],
+            "properties": {
+              "artifact_path": { "type": "string" },
+              "target_node": { "type": "string" },
+              "path": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "edge_types": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "score_breakdown": { "type": "object" }
+            }
+          }
+        },
+        "dropped_candidates": {
+          "type": "array",
+          "items": { "type": "object" }
         }
       }
     },

@@ -10,6 +10,9 @@ $main_reading_layer
 ## Attachment Decisions
 $attachment_decisions
 
+## Graph Explanation
+$graph_notes
+
 ## Compaction And Fallback
 $compaction_notes
 

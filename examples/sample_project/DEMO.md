@@ -12,7 +12,7 @@
 ## 示例 handoff
 
 - 稳定入口: `examples/sample_project/handoffs/LATEST.md`
-- 当前已提交快照: `examples/sample_project/handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/`
+- 当前已提交快照: `examples/sample_project/handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/`
 - 状态: `confirmed`
 
 只有当 schema、目录结构、关键输出字段或 preview / confirm 行为发生变化时，才应该重生成并替换这份快照。
@@ -60,5 +60,5 @@ python -m prepare_web_gpt_handoff.prepare \
 ```bash
 python -m prepare_web_gpt_handoff.confirm \
   --project-root examples/sample_project \
-  --handoff handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包
+  --handoff handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包
 ```

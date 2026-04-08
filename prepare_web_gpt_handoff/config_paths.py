@@ -12,9 +12,16 @@ import os
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from string import Template
 from typing import Any, Iterable
+
+from codex_skills_shared.repo_paths import (
+    absolute_from_relative,
+    ensure_within_project_root,
+    normalize_pattern,
+    to_repo_relative,
+)
 
 
 SKILL_NAME = "prepare_web_gpt_handoff"
@@ -23,6 +30,12 @@ STATUS_PREVIEW = "preview"
 STATUS_CONFIRMED = "confirmed"
 STATUS_ARCHIVED = "archived"
 MIN_EXCERPT_TOKENS = 96
+SELECTOR_ENGINE_NAME = "contract_first_graph_assisted"
+SELECTOR_ENGINE_VERSION = "v1"
+REPO_GRAPH_VERSION = "repo_graph_v1"
+GRAPH_MAX_TWO_HOP = 2
+GRAPH_MAX_EXPLANATION_NODES = 5
+GRAPH_MAX_EXPLANATION_EDGES = 4
 PROJECT_ROOT_ENV_VAR = "PREPARE_WEB_GPT_HANDOFF_PROJECT_ROOT"
 REQUIRE_EXACT_TOKENS_ENV_VAR = "PREPARE_WEB_GPT_HANDOFF_REQUIRE_EXACT_TOKENS"
 
@@ -176,13 +189,6 @@ def dedupe_strings(values: Iterable[str]) -> list[str]:
         seen.add(cleaned)
         result.append(cleaned)
     return result
-
-
-def normalize_pattern(value: str) -> str:
-    normalized = value.strip().replace("\\", "/")
-    while normalized.startswith("./"):
-        normalized = normalized[2:]
-    return normalized
 
 
 def strip_inline_comment(raw_line: str) -> str:
@@ -373,34 +379,6 @@ def slugify(text: str, max_length: int = 40) -> str:
     slug = re.sub(r"_+", "_", slug).strip("_")
     slug = slug or SKILL_NAME
     return slug[:max_length].rstrip("_") or SKILL_NAME
-
-
-def to_repo_relative(path: Path, project_root: Path) -> str:
-    resolved_root = project_root.resolve()
-    resolved_path = path.resolve()
-    try:
-        relative = resolved_path.relative_to(resolved_root)
-    except ValueError as exc:
-        raise ValueError(f"Path {resolved_path} is outside project root {resolved_root}") from exc
-    if not relative.parts:
-        return "."
-    return PurePosixPath(relative).as_posix()
-
-
-def absolute_from_relative(project_root: Path, relative_path: str) -> Path:
-    if relative_path == ".":
-        return project_root.resolve()
-    return (project_root / Path(*PurePosixPath(relative_path).parts)).resolve()
-
-
-def ensure_within_project_root(path: Path, project_root: Path, description: str) -> Path:
-    resolved_root = project_root.resolve()
-    resolved_path = path.resolve()
-    try:
-        resolved_path.relative_to(resolved_root)
-    except ValueError as exc:
-        raise ValueError(f"{description} must stay inside project root: {resolved_path}") from exc
-    return resolved_path
 
 
 def write_text(path: Path, content: str) -> None:

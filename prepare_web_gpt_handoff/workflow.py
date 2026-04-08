@@ -44,8 +44,10 @@ from .selection import (
     CONTEXT_LAYER_DYNAMIC_TASK,
     CONTEXT_LAYER_EVIDENCE,
     CONTEXT_LAYER_STABLE_CONTRACT,
+    GRAPH_DIRECT_ANCHOR,
     PROTECTED_ARTIFACT_TYPES,
     STRATEGY_VERSION,
+    GraphSelectionContext,
     SelectedFile,
     derive_query_terms,
     select_files,
@@ -444,6 +446,7 @@ def build_notes(
     inputs: HandoffInputs,
     selected_files: list[SelectedFile],
     warnings: list[str],
+    graph_context: GraphSelectionContext,
 ) -> str:
     included_items = [item for item in selected_files if item.included_in_bundle]
     attachment_only = [item for item in selected_files if not item.included_in_bundle]
@@ -462,6 +465,13 @@ def build_notes(
             for item in attachment_only
         ],
         "本次没有 artifact 被压到 attachments/。",
+    )
+    graph_notes = bulletize(
+        [
+            f"{entry['artifact_path']}: path={ ' -> '.join(entry['path']) } / edge_types={', '.join(entry['edge_types']) or GRAPH_DIRECT_ANCHOR}"
+            for entry in graph_context.explanation_summary.get("per_artifact_paths", [])[:6]
+        ],
+        "当前没有额外的图解释路径。",
     )
     compaction_notes = bulletize(
         [
@@ -494,6 +504,7 @@ def build_notes(
                 "topic": inputs.topic,
                 "main_reading_layer": main_reading_layer,
                 "attachment_decisions": attachment_notes,
+                "graph_notes": graph_notes,
                 "compaction_notes": compaction_notes,
                 "excluded_areas": excluded_notes,
                 "confirmation_checklist": confirmation_checklist,
@@ -556,6 +567,16 @@ def _anchor_fidelity(selected_files: list[SelectedFile]) -> bool:
     return True
 
 
+def _explanation_coverage(selected_files: list[SelectedFile]) -> int:
+    """中文说明：统计主阅读层中具备图解释路径的条目覆盖率。"""
+
+    included_items = [item for item in selected_files if item.included_in_bundle]
+    if not included_items:
+        return 100
+    explained_count = sum(1 for item in included_items if item.explanation_path_ref)
+    return int(round((explained_count / len(included_items)) * 100))
+
+
 def _bundle_order_valid(selected_files: list[SelectedFile]) -> bool:
     grouped = group_files(selected_files)
     if grouped["contract"] and grouped["supporting"]:
@@ -583,6 +604,7 @@ def build_quality_metrics(selected_files: list[SelectedFile], bundle_tokens: int
         "budget_compliance": bundle_tokens <= max_bundle_tokens,
         "anchor_fidelity": _anchor_fidelity(selected_files),
         "bundle_order_valid": _bundle_order_valid(selected_files),
+        "explanation_coverage": _explanation_coverage(selected_files),
     }
 
 
@@ -672,6 +694,9 @@ def create_preview_payload(
         "retrieval_gate": selection_summary["retrieval_gate"],
         "quality_metrics": selection_summary["quality_metrics"],
         "token_runtime": selection_summary["token_runtime"],
+        "selector_engine": selection_summary["selector_engine"],
+        "repo_graph": selection_summary["repo_graph"],
+        "explanation": manifest["explanation"],
         "brief_summary": summarize_brief(brief_text, defaults, token_counter),
         "file_list_summary": [
             {
@@ -687,6 +712,10 @@ def create_preview_payload(
                 "included_in_bundle": item.included_in_bundle,
                 "dependency_promoted": item.dependency_promoted,
                 "critical_token_preserved": item.critical_token_preserved,
+                "graph_selected": item.graph_selected,
+                "graph_distance": item.graph_distance,
+                "graph_path_types": list(item.graph_path_types),
+                "explanation_path_ref": item.explanation_path_ref,
             }
             for item in selected_files
         ],
@@ -722,7 +751,11 @@ def build_preview_text(preview_payload: dict[str, Any]) -> str:
         f"fallback 条目数: {preview_payload.get('fallback_count', 0)}\n"
         f"retrieval_gate: {preview_payload.get('retrieval_gate', 'unknown')}\n"
         f"token_count_method: {preview_payload.get('token_runtime', {}).get('resolved_method', 'unknown')}\n"
+        f"selector_engine: {preview_payload.get('selector_engine', {}).get('name', 'unknown')}@"
+        f"{preview_payload.get('selector_engine', {}).get('version', 'unknown')}\n"
+        f"two_hop_triggered: {preview_payload.get('repo_graph', {}).get('two_hop_triggered', False)}\n"
         f"bundle_order_valid: {preview_payload.get('quality_metrics', {}).get('bundle_order_valid', False)}\n"
+        f"explanation_coverage: {preview_payload.get('quality_metrics', {}).get('explanation_coverage', 0)}\n"
         f"top_anchors: {top_anchors}\n\n"
         "brief 摘要:\n"
         f"{preview_payload['brief_summary']}\n\n"
@@ -767,7 +800,12 @@ def prepare_handoff(project_root: Path, inputs: HandoffInputs) -> dict[str, Any]
         require_exact_tokens=effective_require_exact_tokens,
     )
     token_counter = token_runtime.counter
-    selected_files, summary_seed, warnings = select_files(project_root, normalized_inputs, defaults, token_counter)
+    selected_files, summary_seed, warnings, graph_context = select_files(
+        project_root,
+        normalized_inputs,
+        defaults,
+        token_counter,
+    )
     if not token_runtime.exact_available:
         warnings.append(
             "未使用精确 token 计数，当前 token 预算回退为估算模式："
@@ -786,7 +824,7 @@ def prepare_handoff(project_root: Path, inputs: HandoffInputs) -> dict[str, Any]
     handoff_dir = make_handoff_dir(project_root, handoff_id)
     copy_attachments(project_root, handoff_dir, selected_files)
 
-    notes_text = build_notes(handoff_id, normalized_inputs, selected_files, warnings)
+    notes_text = build_notes(handoff_id, normalized_inputs, selected_files, warnings, graph_context)
     reply_template_text = build_reply_template(handoff_id, normalized_inputs)
 
     artifacts = {
@@ -840,6 +878,8 @@ def prepare_handoff(project_root: Path, inputs: HandoffInputs) -> dict[str, Any]
         "bundle_order_version": BUNDLE_ORDER_VERSION,
         "critical_contract_items": critical_contract_items,
         "dependency_promoted_items": dependency_promoted_items,
+        "selector_engine": graph_context.selector_engine,
+        "repo_graph": graph_context.repo_graph_summary,
         "retrieval_gate": summary_seed["retrieval_gate"],
         "quality_metrics": quality_metrics,
     }
@@ -878,6 +918,7 @@ def prepare_handoff(project_root: Path, inputs: HandoffInputs) -> dict[str, Any]
         },
         "selection_summary": selection_summary,
         "files": [item.to_manifest() for item in selected_files],
+        "explanation": graph_context.explanation_summary,
         "artifacts": artifacts,
         "notes": {
             "summary": f"已为主题“{normalized_inputs.topic}”生成 preview 状态的 handoff 包。",

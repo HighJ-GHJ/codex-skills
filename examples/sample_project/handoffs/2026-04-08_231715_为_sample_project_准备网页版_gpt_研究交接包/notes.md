@@ -1,6 +1,6 @@
 # Handoff Notes
 
-- handoff_id: `2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包`
+- handoff_id: `2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包`
 - mode: `strategy_research`
 - topic: `为 sample_project 准备网页版 GPT 研究交接包`
 
@@ -16,6 +16,14 @@
 
 ## Attachment Decisions
 - 本次没有 artifact 被压到 attachments/。
+
+## Graph Explanation
+- README.md: path=task_anchor:direct_path -> file:README.md / edge_types=direct_anchor
+- docs/overview.md: path=task_anchor:direct_path -> file:docs/overview.md / edge_types=direct_anchor
+- docs/research_questions.md: path=task_anchor:direct_path -> file:docs/research_questions.md / edge_types=direct_anchor
+- logs/strategy.log: path=task_anchor:direct_path -> file:logs/strategy.log / edge_types=direct_anchor
+- schemas/manifest.schema.json: path=task_anchor:direct_path -> file:schemas/manifest.schema.json / edge_types=direct_anchor
+- src/selector.py: path=task_anchor:direct_path -> file:src/selector.py / edge_types=direct_anchor
 
 ## Compaction And Fallback
 - 当前主阅读层条目均未触发 compaction 或 fallback。

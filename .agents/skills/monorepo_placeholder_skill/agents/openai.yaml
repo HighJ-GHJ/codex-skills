@@ -1,0 +1,7 @@
+interface:
+  display_name: "Monorepo Placeholder Skill"
+  short_description: "Repository scaffold used to validate multi-skill monorepo structure"
+  default_prompt: "This is a placeholder scaffold and should not be invoked for production tasks."
+
+policy:
+  allow_implicit_invocation: false

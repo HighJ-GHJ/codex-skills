@@ -206,11 +206,17 @@ class ManifestTests(unittest.TestCase):
         self.assertIn("bundle_order_version", selection_summary)
         self.assertIn("critical_contract_items", selection_summary)
         self.assertIn("dependency_promoted_items", selection_summary)
+        self.assertIn("selector_engine", selection_summary)
+        self.assertIn("repo_graph", selection_summary)
         self.assertIn("retrieval_gate", selection_summary)
         self.assertIn("quality_metrics", selection_summary)
         self.assertIn(selection_summary["retrieval_gate"], {"brief_only", "brief_plus_contract", "full_bundle"})
         self.assertIsInstance(selection_summary["critical_contract_items"], list)
         self.assertIsInstance(selection_summary["dependency_promoted_items"], list)
+        self.assertEqual(selection_summary["selector_engine"]["name"], "contract_first_graph_assisted")
+        self.assertEqual(selection_summary["selector_engine"]["version"], "v1")
+        self.assertTrue(selection_summary["selector_engine"]["graph_assisted"])
+        self.assertEqual(selection_summary["repo_graph"]["graph_version"], "repo_graph_v1")
         quality_metrics = selection_summary["quality_metrics"]
         for key in [
             "contract_coverage",
@@ -220,11 +226,55 @@ class ManifestTests(unittest.TestCase):
             "budget_compliance",
             "anchor_fidelity",
             "bundle_order_valid",
+            "explanation_coverage",
         ]:
             self.assertIn(key, quality_metrics)
         self.assertTrue(quality_metrics["budget_compliance"])
         self.assertTrue(quality_metrics["anchor_fidelity"])
         self.assertTrue(quality_metrics["bundle_order_valid"])
+
+    def test_graph_selector_outputs_explanation_paths_and_file_graph_fields(self) -> None:
+        result = prepare_handoff(
+            self.project_root,
+            self.build_inputs(
+                must_include=["README.md", "src/main.py"],
+                max_files=3,
+                topic="Review workflow and supporting code graph paths",
+                goal="Expose graph-assisted explanation paths in the manifest.",
+                focus_points=["workflow", "dependency", "graph explanation"],
+            ),
+        )
+        manifest = result["manifest"]
+        explanation = manifest["explanation"]
+        self.assertIn("per_artifact_paths", explanation)
+        self.assertGreater(len(explanation["per_artifact_paths"]), 0)
+        artifact_paths = {entry["artifact_path"] for entry in explanation["per_artifact_paths"]}
+        for entry in explanation["per_artifact_paths"]:
+            self.assertIn("target_node", entry)
+            self.assertIn("path", entry)
+            self.assertIn("edge_types", entry)
+            self.assertIn("score_breakdown", entry)
+        for file_entry in manifest["files"]:
+            self.assertIn("graph_selected", file_entry)
+            self.assertIn("graph_distance", file_entry)
+            self.assertIn("graph_path_types", file_entry)
+            self.assertIn("explanation_path_ref", file_entry)
+            if file_entry["included_in_bundle"]:
+                self.assertIn(file_entry["explanation_path_ref"], artifact_paths)
+
+    def test_same_input_produces_stable_selected_path_set(self) -> None:
+        inputs = self.build_inputs(
+            must_include=["README.md", "docs/problem.md"],
+            max_files=4,
+            topic="Stability check for graph-assisted selection",
+            goal="The selected path set should stay stable across repeated runs.",
+            focus_points=["stability", "graph-assisted selector"],
+        )
+        first_result = prepare_handoff(self.project_root, inputs)
+        second_result = prepare_handoff(self.project_root, inputs)
+        first_paths = {item["path"] for item in first_result["manifest"]["files"]}
+        second_paths = {item["path"] for item in second_result["manifest"]["files"]}
+        self.assertEqual(first_paths, second_paths)
 
     def test_contract_artifacts_rank_ahead_of_supporting_docs(self) -> None:
         schemas_dir = self.project_root / "schemas"

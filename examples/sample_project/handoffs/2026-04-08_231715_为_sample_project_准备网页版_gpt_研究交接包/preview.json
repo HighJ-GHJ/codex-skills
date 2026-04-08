@@ -1,0 +1,404 @@
+{
+  "handoff_id": "2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包",
+  "status": "confirmed",
+  "mode": "strategy_research",
+  "topic": "为 sample_project 准备网页版 GPT 研究交接包",
+  "selected_file_count": 8,
+  "truncated_file_count": 4,
+  "excluded_file_count": 1,
+  "contract_count": 2,
+  "workflow_count": 1,
+  "structured_extract_count": 7,
+  "fallback_count": 0,
+  "retrieval_gate": "full_bundle",
+  "quality_metrics": {
+    "contract_coverage": 2,
+    "workflow_coverage": 1,
+    "structured_extract_ratio": 88,
+    "fallback_ratio": 0,
+    "budget_compliance": true,
+    "anchor_fidelity": true,
+    "bundle_order_valid": true,
+    "explanation_coverage": 100
+  },
+  "token_runtime": {
+    "exact_requested": true,
+    "exact_available": true,
+    "resolved_method": "tiktoken:cl100k_base",
+    "fallback_reason": ""
+  },
+  "selector_engine": {
+    "name": "contract_first_graph_assisted",
+    "version": "v1",
+    "graph_assisted": true
+  },
+  "repo_graph": {
+    "graph_version": "repo_graph_v1",
+    "node_counts": {
+      "dir": 6,
+      "file": 10,
+      "artifact_contract": 0,
+      "artifact_workflow": 1,
+      "artifact_schema_template": 2,
+      "symbol": 7,
+      "task_state_anchor": 9
+    },
+    "edge_counts": {
+      "contains": 25,
+      "imports": 0,
+      "constrains": 0,
+      "depends_on": 10,
+      "consumes": 2
+    },
+    "two_hop_enabled": true,
+    "two_hop_triggered": false
+  },
+  "explanation": {
+    "per_artifact_paths": [
+      {
+        "artifact_path": "README.md",
+        "target_node": "file:README.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:README.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "docs/overview.md",
+        "target_node": "file:docs/overview.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:docs/overview.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "docs/research_questions.md",
+        "target_node": "file:docs/research_questions.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:docs/research_questions.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "logs/strategy.log",
+        "target_node": "file:logs/strategy.log",
+        "path": [
+          "task_anchor:direct_path",
+          "file:logs/strategy.log"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "schemas/manifest.schema.json",
+        "target_node": "file:schemas/manifest.schema.json",
+        "path": [
+          "task_anchor:direct_path",
+          "file:schemas/manifest.schema.json"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "src/selector.py",
+        "target_node": "file:src/selector.py",
+        "path": [
+          "task_anchor:direct_path",
+          "file:src/selector.py"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "src/workflow.py",
+        "target_node": "file:src/workflow.py",
+        "path": [
+          "task_anchor:direct_path",
+          "file:src/workflow.py"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "templates/reply_template.md",
+        "target_node": "file:templates/reply_template.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:templates/reply_template.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      }
+    ],
+    "dropped_candidates": [
+      {
+        "artifact_path": "src/handoff_builder.py",
+        "reason": "budget_or_lower_score",
+        "graph_distance": 0,
+        "path_types": [
+          "direct_anchor"
+        ],
+        "selection_reason": "Code artifact that grounds the current technical discussion. Path and name align with current task-specific query lanes: src. Promoted as a direct consumer of contract artifacts needed to interpret output shape and status. Graph seeds align this artifact with the current task state."
+      },
+      {
+        "artifact_path": "DEMO.md",
+        "reason": "budget_or_lower_score",
+        "graph_distance": 0,
+        "path_types": [
+          "direct_anchor"
+        ],
+        "selection_reason": "Supporting context artifact that helps frame the task without defining the contract. Only provides broad background and is not currently necessary. Graph seeds align this artifact with the current task state."
+      }
+    ]
+  },
+  "brief_summary": "Web GPT Handoff Brief 1. 任务类型 这是一项以“为 sample_project 准备网页版 GPT 研究交接包”为主题的策略讨论 / 资料检索任务，当前模式为 `strategy_research`。请把重点放在判断框架、研究路径、方案取舍、验证思路与资料补全上，而不是直接产出代码实现或改仓库补丁。...",
+  "file_list_summary": [
+    {
+      "path": "README.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Sample Project",
+        "演示目标",
+        "示例内容"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "README.md"
+    },
+    {
+      "path": "docs/overview.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Sample Project Overview"
+      ],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "docs/overview.md"
+    },
+    {
+      "path": "docs/research_questions.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Research Questions"
+      ],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "docs/research_questions.md"
+    },
+    {
+      "path": "schemas/manifest.schema.json",
+      "type": "config",
+      "reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "context_layer": "stable_contract",
+      "artifact_type": "contract",
+      "excerpt_strategy": "key_block_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "$schema",
+        "title",
+        "required",
+        "properties.status",
+        "properties.paths.required",
+        "properties.artifacts"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "schemas/manifest.schema.json"
+    },
+    {
+      "path": "templates/reply_template.md",
+      "type": "documentation",
+      "reason": "User explicitly requested this artifact. Contract artifact that defines output shape, prompt framing, or handoff policy.",
+      "context_layer": "stable_contract",
+      "artifact_type": "contract",
+      "excerpt_strategy": "section_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "Sample Project Reply Template",
+        "Output Contract",
+        "Required Sections"
+      ],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "templates/reply_template.md"
+    },
+    {
+      "path": "src/workflow.py",
+      "type": "code",
+      "reason": "User explicitly requested this artifact. Workflow artifact that controls handoff creation, preview, or confirmation state.",
+      "context_layer": "evidence",
+      "artifact_type": "workflow",
+      "excerpt_strategy": "symbol_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "<imports>",
+        "HandoffState",
+        "build_preview_state",
+        "confirm_state"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": true,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "src/workflow.py"
+    },
+    {
+      "path": "src/selector.py",
+      "type": "code",
+      "reason": "User explicitly requested this artifact. Selection logic artifact that determines ranking, extraction, or budget behavior.",
+      "context_layer": "evidence",
+      "artifact_type": "selection_logic",
+      "excerpt_strategy": "symbol_extract",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [
+        "<imports>",
+        "Candidate",
+        "rank_candidates"
+      ],
+      "truncated": true,
+      "included_in_bundle": true,
+      "dependency_promoted": true,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "src/selector.py"
+    },
+    {
+      "path": "logs/strategy.log",
+      "type": "log",
+      "reason": "User explicitly requested this artifact. Supporting context artifact that helps frame the task without defining the contract.",
+      "context_layer": "evidence",
+      "artifact_type": "supporting_context",
+      "excerpt_strategy": "full_text",
+      "compaction_strategy": "none",
+      "excerpt_anchor": [],
+      "truncated": false,
+      "included_in_bundle": true,
+      "dependency_promoted": false,
+      "critical_token_preserved": true,
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "logs/strategy.log"
+    }
+  ],
+  "top_anchors": [
+    "Sample Project",
+    "演示目标",
+    "示例内容",
+    "Sample Project Overview",
+    "Research Questions",
+    "$schema"
+  ],
+  "next_actions": [
+    "检查 brief.md 与 bundle.md 是否准确覆盖了当前策略问题。",
+    "只有在预览内容正确时再让 Codex 执行确认交付。",
+    "如果材料过多或过少，使用更精确的 must_include / must_exclude 重新生成。"
+  ]
+}

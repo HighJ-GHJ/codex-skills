@@ -145,6 +145,14 @@ class EntrypointTests(unittest.TestCase):
         direct_runtime = direct_manifest["selection_summary"]["token_runtime"]
         self.assertEqual(direct_runtime, module_manifest["selection_summary"]["token_runtime"])
         self.assertEqual(direct_runtime, wrapper_manifest["selection_summary"]["token_runtime"])
+        self.assertEqual(
+            direct_manifest["selection_summary"]["selector_engine"],
+            module_manifest["selection_summary"]["selector_engine"],
+        )
+        self.assertEqual(
+            direct_manifest["selection_summary"]["selector_engine"],
+            wrapper_manifest["selection_summary"]["selector_engine"],
+        )
 
         exact_available = build_token_runtime(load_defaults()).exact_available
         if exact_available:

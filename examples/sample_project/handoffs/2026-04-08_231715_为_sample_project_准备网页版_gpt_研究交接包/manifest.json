@@ -1,16 +1,16 @@
 {
   "skill_name": "prepare_web_gpt_handoff",
   "skill_version": "0.2.0",
-  "handoff_id": "2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包",
-  "created_at": "2026-04-08T00:04:23+08:00",
+  "handoff_id": "2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包",
+  "created_at": "2026-04-08T23:17:15+08:00",
   "mode": "strategy_research",
   "topic": "为 sample_project 准备网页版 GPT 研究交接包",
   "goal": "把当前策略问题与最小必要材料整理给网页版 GPT 继续研究",
   "status": "confirmed",
   "paths": {
     "project_root": ".",
-    "handoff_dir": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包",
-    "attachments_dir": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments"
+    "handoff_dir": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包",
+    "attachments_dir": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments"
   },
   "inputs": {
     "mode": "strategy_research",
@@ -55,7 +55,7 @@
     "total_candidate_files": 10,
     "selected_files": 8,
     "truncated_files": 4,
-    "excluded_files": 16,
+    "excluded_files": 1,
     "total_bundle_tokens": 2657,
     "max_files_requested": 8,
     "max_bundle_tokens_requested": 4096,
@@ -87,6 +87,32 @@
       "src/workflow.py",
       "src/selector.py"
     ],
+    "selector_engine": {
+      "name": "contract_first_graph_assisted",
+      "version": "v1",
+      "graph_assisted": true
+    },
+    "repo_graph": {
+      "graph_version": "repo_graph_v1",
+      "node_counts": {
+        "dir": 6,
+        "file": 10,
+        "artifact_contract": 0,
+        "artifact_workflow": 1,
+        "artifact_schema_template": 2,
+        "symbol": 7,
+        "task_state_anchor": 9
+      },
+      "edge_counts": {
+        "contains": 25,
+        "imports": 0,
+        "constrains": 0,
+        "depends_on": 10,
+        "consumes": 2
+      },
+      "two_hop_enabled": true,
+      "two_hop_triggered": false
+    },
     "retrieval_gate": "full_bundle",
     "quality_metrics": {
       "contract_coverage": 2,
@@ -95,7 +121,8 @@
       "fallback_ratio": 0,
       "budget_compliance": true,
       "anchor_fidelity": true,
-      "bundle_order_valid": true
+      "bundle_order_valid": true,
+      "explanation_coverage": 100
     }
   },
   "files": [
@@ -123,7 +150,13 @@
       "fallback_used": false,
       "dependency_promoted": false,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/README.md"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "README.md",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/README.md"
     },
     {
       "path": "docs/overview.md",
@@ -147,7 +180,13 @@
       "fallback_used": false,
       "dependency_promoted": false,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/docs/overview.md"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "docs/overview.md",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/docs/overview.md"
     },
     {
       "path": "docs/research_questions.md",
@@ -171,7 +210,13 @@
       "fallback_used": false,
       "dependency_promoted": false,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/docs/research_questions.md"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "docs/research_questions.md",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/docs/research_questions.md"
     },
     {
       "path": "schemas/manifest.schema.json",
@@ -200,7 +245,13 @@
       "fallback_used": false,
       "dependency_promoted": false,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/schemas/manifest.schema.json"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "schemas/manifest.schema.json",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/schemas/manifest.schema.json"
     },
     {
       "path": "templates/reply_template.md",
@@ -226,7 +277,13 @@
       "fallback_used": false,
       "dependency_promoted": false,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/templates/reply_template.md"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "templates/reply_template.md",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/templates/reply_template.md"
     },
     {
       "path": "src/workflow.py",
@@ -253,7 +310,13 @@
       "fallback_used": false,
       "dependency_promoted": true,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/src/workflow.py"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "src/workflow.py",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/src/workflow.py"
     },
     {
       "path": "src/selector.py",
@@ -279,7 +342,13 @@
       "fallback_used": false,
       "dependency_promoted": true,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/src/selector.py"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "src/selector.py",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/src/selector.py"
     },
     {
       "path": "logs/strategy.log",
@@ -301,16 +370,166 @@
       "fallback_used": false,
       "dependency_promoted": false,
       "critical_token_preserved": true,
-      "attachment_path": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/attachments/logs/strategy.log"
+      "graph_selected": false,
+      "graph_distance": 0,
+      "graph_path_types": [
+        "direct_anchor"
+      ],
+      "explanation_path_ref": "logs/strategy.log",
+      "attachment_path": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/attachments/logs/strategy.log"
     }
   ],
+  "explanation": {
+    "per_artifact_paths": [
+      {
+        "artifact_path": "README.md",
+        "target_node": "file:README.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:README.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "docs/overview.md",
+        "target_node": "file:docs/overview.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:docs/overview.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "docs/research_questions.md",
+        "target_node": "file:docs/research_questions.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:docs/research_questions.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "logs/strategy.log",
+        "target_node": "file:logs/strategy.log",
+        "path": [
+          "task_anchor:direct_path",
+          "file:logs/strategy.log"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "schemas/manifest.schema.json",
+        "target_node": "file:schemas/manifest.schema.json",
+        "path": [
+          "task_anchor:direct_path",
+          "file:schemas/manifest.schema.json"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "src/selector.py",
+        "target_node": "file:src/selector.py",
+        "path": [
+          "task_anchor:direct_path",
+          "file:src/selector.py"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "src/workflow.py",
+        "target_node": "file:src/workflow.py",
+        "path": [
+          "task_anchor:direct_path",
+          "file:src/workflow.py"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      },
+      {
+        "artifact_path": "templates/reply_template.md",
+        "target_node": "file:templates/reply_template.md",
+        "path": [
+          "task_anchor:direct_path",
+          "file:templates/reply_template.md"
+        ],
+        "edge_types": [],
+        "score_breakdown": {
+          "seed_bonus": 160,
+          "path_bonus": 0,
+          "path_cost": 0,
+          "semantic_hops": 0
+        }
+      }
+    ],
+    "dropped_candidates": [
+      {
+        "artifact_path": "src/handoff_builder.py",
+        "reason": "budget_or_lower_score",
+        "graph_distance": 0,
+        "path_types": [
+          "direct_anchor"
+        ],
+        "selection_reason": "Code artifact that grounds the current technical discussion. Path and name align with current task-specific query lanes: src. Promoted as a direct consumer of contract artifacts needed to interpret output shape and status. Graph seeds align this artifact with the current task state."
+      },
+      {
+        "artifact_path": "DEMO.md",
+        "reason": "budget_or_lower_score",
+        "graph_distance": 0,
+        "path_types": [
+          "direct_anchor"
+        ],
+        "selection_reason": "Supporting context artifact that helps frame the task without defining the contract. Only provides broad background and is not currently necessary. Graph seeds align this artifact with the current task state."
+      }
+    ]
+  },
   "artifacts": {
-    "brief_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/brief.md",
-    "bundle_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/bundle.md",
-    "manifest_json": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/manifest.json",
-    "reply_template_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/reply_template.md",
-    "notes_md": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/notes.md",
-    "preview_json": "handoffs/2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包/preview.json"
+    "brief_md": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/brief.md",
+    "bundle_md": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/bundle.md",
+    "manifest_json": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/manifest.json",
+    "reply_template_md": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/reply_template.md",
+    "notes_md": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/notes.md",
+    "preview_json": "handoffs/2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包/preview.json"
   },
   "notes": {
     "summary": "已确认交付主题“为 sample_project 准备网页版 GPT 研究交接包”的 handoff 包。",
@@ -326,5 +545,5 @@
       "reply_template.md"
     ]
   },
-  "confirmed_at": "2026-04-08T00:04:29+08:00"
+  "confirmed_at": "2026-04-08T23:17:19+08:00"
 }

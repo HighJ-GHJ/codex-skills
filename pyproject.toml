@@ -3,14 +3,14 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "prepare-web-gpt-handoff-skill"
+name = "codex-skills-workspace"
 version = "0.2.0"
-description = "A portable Codex skill for preparing a handoff package for web GPT strategy and research discussions."
+description = "A zero-install-first monorepo for multiple repo-scoped Codex skills."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Codex" }]
 license = { file = "LICENSE" }
-keywords = ["codex", "skill", "handoff", "web-gpt", "research", "strategy"]
+keywords = ["codex", "skills", "monorepo", "handoff", "web-gpt", "research"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -32,4 +32,4 @@ prepare-web-gpt-handoff-preview = "prepare_web_gpt_handoff.preview:main"
 prepare-web-gpt-handoff-confirm = "prepare_web_gpt_handoff.confirm:main"
 
 [tool.setuptools]
-packages = ["prepare_web_gpt_handoff"]
+packages = ["prepare_web_gpt_handoff", "codex_skills_shared"]

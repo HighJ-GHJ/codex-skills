@@ -12,7 +12,7 @@
 ```md
 ---
 schema_version: "1.0"
-handoff_id: "2026-04-08_000423_为_sample_project_准备网页版_gpt_研究交接包"
+handoff_id: "2026-04-08_231715_为_sample_project_准备网页版_gpt_研究交接包"
 topic: "为 sample_project 准备网页版 GPT 研究交接包"
 mode: "strategy_research"
 source_provider: "OpenAI"

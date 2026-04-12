@@ -3,7 +3,14 @@
 
 from __future__ import annotations
 
-from _bootstrap import ensure_repo_root_on_syspath
+if __package__ in {None, ""}:
+    import sys
+    from pathlib import Path
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from _bootstrap import ensure_repo_root_on_syspath
+else:
+    from ._bootstrap import ensure_repo_root_on_syspath
 
 ensure_repo_root_on_syspath()
 

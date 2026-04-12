@@ -36,6 +36,7 @@ python -m prepare_web_gpt_handoff.confirm --help
 - `.agents/skills/prepare_web_gpt_handoff/scripts/confirm_handoff.py`
 
 但 wrapper 只作为兼容层存在，真实实现以根级包 `prepare_web_gpt_handoff/` 为准。
+兼容层的 repo root 注入逻辑由 `scripts/_bootstrap.py` 单点维护，避免多脚本漂移。
 
 ## 输出结构
 

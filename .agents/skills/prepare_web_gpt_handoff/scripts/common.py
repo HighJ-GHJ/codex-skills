@@ -7,13 +7,10 @@
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
+from _bootstrap import ensure_repo_root_on_syspath
 
 
-REPO_ROOT = Path(__file__).resolve().parents[4]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
+REPO_ROOT = ensure_repo_root_on_syspath()
 
 from prepare_web_gpt_handoff import (  # noqa: E402
     ExactTokenUnavailableError,

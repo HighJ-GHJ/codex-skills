@@ -26,6 +26,7 @@ from .config_paths import (
     read_json,
     require_exact_tokens_from_env,
     render_template,
+    slugify,
     timestamp_for_id,
     to_repo_relative,
     visible_handoff_dir,
@@ -85,20 +86,13 @@ def guess_language(path: str) -> str:
 
 
 def allocate_handoff_id(project_root: Path, topic: str) -> str:
-    base_id = f"{timestamp_for_id()}_{_slugify(topic)}"
+    base_id = f"{timestamp_for_id()}_{slugify(topic)}"
     handoff_id = base_id
     counter = 1
     while visible_handoff_dir(project_root, handoff_id).exists():
         handoff_id = f"{base_id}_{counter:02d}"
         counter += 1
     return handoff_id
-
-
-def _slugify(text: str, max_length: int = 40) -> str:
-    slug = re.sub(r"[^A-Za-z0-9\u4e00-\u9fff]+", "_", text.strip().lower())
-    slug = re.sub(r"_+", "_", slug).strip("_")
-    slug = slug or SKILL_NAME
-    return slug[:max_length].rstrip("_") or SKILL_NAME
 
 
 def make_handoff_dir(project_root: Path, handoff_id: str) -> Path:
